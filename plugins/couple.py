@@ -1,15 +1,11 @@
 from datetime import datetime, timedelta
 import pytz
-import os
 import random
 from pyrogram import filters
 from pyrogram.types import InputMediaAnimation
 from pyrogram.enums import ChatType
-from telegraph import upload_file
-import requests
-
+from your_project import app  # Make sure you import your app correctly
 from utils import get_image, get_couple, save_couple
-from VIPMUSIC import app
 
 # Get current date in GMT+5:30 timezone
 def get_today_date():
@@ -31,7 +27,7 @@ today = get_today_date()
 async def ctest(_, message):
     cid = message.chat.id
     if message.chat.type == ChatType.PRIVATE:
-        return await message.reply_text("Tʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.")
+        return await message.reply_text("This command only works in groups.")
 
     try:
         is_selected = await get_couple(cid, today)
@@ -49,7 +45,7 @@ async def ctest(_, message):
             c1_id = random.choice(list_of_users)
             c2_id = random.choice(list_of_users)
             while c1_id == c2_id:
-                c2_id = random.choice(list_of_users)  # Fixing the loop to avoid selecting the same user
+                c2_id = random.choice(list_of_users)
 
             N1 = (await app.get_users(c1_id)).mention
             N2 = (await app.get_users(c2_id)).mention
@@ -67,7 +63,7 @@ New couple of the day can be chosen on {tomorrow}!!**
             await msg.delete()
 
             # Specify the GIF URL
-            gif_url = "https://giphy.com/gifs/3xVLUygjT4AIxtqjS6"  # Replace with your GIF URL
+            gif_url = "https://media.giphy.com/media/3xVLUygjT4AIxtqjS6/giphy.gif"  # Use a direct GIF URL
             
             # Send the GIF with the message
             await message.reply_animation(animation=gif_url, caption=TXT)
@@ -78,7 +74,6 @@ New couple of the day can be chosen on {tomorrow}!!**
         else:
             # Handle the case when a couple has already been selected
             msg = await message.reply_text("❣️")
-            b = await get_image(cid)
             c1_id = int(is_selected["c1_id"])
             c2_id = int(is_selected["c2_id"])
             c1_name = (await app.get_users(c1_id)).first_name
@@ -93,14 +88,14 @@ New couple of the day can be chosen on {tomorrow}!!**
             """
 
             # Specify the GIF URL
-            gif_url = "https://giphy.com/gifs/3xVLUygjT4AIxtqjS6"  # Replace with your GIF URL
+            gif_url = "https://media.giphy.com/media/3xVLUygjT4AIxtqjS6/giphy.gif"  # Use a direct GIF URL
             
             # Delete the initial message and send the GIF with the message
             await msg.delete()
             await message.reply_animation(animation=gif_url, caption=TXT)
 
     except Exception as e:
-        print(str(e))
+        print("Error occurred:", str(e))
     finally:
         # Cleanup code (if any files are created)
         pass
