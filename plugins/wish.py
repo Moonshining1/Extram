@@ -1,9 +1,10 @@
 import random
 from pyrogram import filters
-from VIPMUSIC import app
+from VIPMUSIC import app, BANNED_USERS  # Ensure BANNED_USERS is imported
+from VIPMUSIC.utils.database import get_banned_users, get_gbanned
 
 # /wish command handler
-@app.on_message(filters.command("wish") & filters.user(BANNED_USERS))
+@app.on_message(filters.command("wish"))
 async def wish_success(client, message):
     if len(message.command) < 2:
         await message.reply_text("Please specify your wish!")
@@ -23,7 +24,7 @@ async def main():
         await app.start()
         LOGGER.info("Bot started!")
         
-        # Additional startup tasks, e.g., loading banned users
+        # Load banned users into the BANNED_USERS set
         banned_users = await get_banned_users()
         gbanned_users = await get_gbanned()
         
