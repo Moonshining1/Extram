@@ -1,7 +1,7 @@
 import random
 from pyrogram import Client, filters
+from VIPMUSIC import app  # Ensure you import the app instance
 
-# Assuming you have an app instance from Pyrogram
 @app.on_message(filters.command("judge") & filters.reply)
 async def judge(client, message):
     # Get the user being replied to
@@ -26,4 +26,5 @@ async def main():
     await idle()
 
 if __name__ == "__main__":
+    import asyncio  # Ensure asyncio is imported at the top level
     asyncio.run(main())
