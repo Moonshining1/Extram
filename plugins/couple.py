@@ -4,7 +4,7 @@ import random
 from pyrogram import filters
 from pyrogram.types import InputMediaAnimation
 from pyrogram.enums import ChatType
-from your_project import app  # Make sure you import your app correctly
+from bot import app  # Make sure you import your app correctly
 from utils import get_image, get_couple, save_couple
 
 # Get current date in GMT+5:30 timezone
