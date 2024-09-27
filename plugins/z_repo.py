@@ -7,7 +7,7 @@ from VIPMUSIC import app
 from VIPMUSIC.utils.database import add_served_chat, get_assistant
 
 
-@app.on_message(filters.command("repo"))
+@app.on_message(filters.command("repgiihjjjbbko"))
 async def help(client: Client, message: Message):
     await message.reply_photo(
         photo=f"https://telegra.ph/file/562a071a222f60c93f45a.jpg",
